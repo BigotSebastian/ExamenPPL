@@ -1405,25 +1405,40 @@ ${message}`;
 
 <script data-goatcounter="https://aeroclubdiamante.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
+
 <script>
-(function () {
-  var tries = 0;
-  var timer = setInterval(function () {
-    tries++;
-    if (window.goatcounter && window.goatcounter.visit_count) {
-      clearInterval(timer);
-      var el = document.getElementById('visitor-count');
-      if (el) el.textContent = '';
-      window.goatcounter.visit_count({
-        append: '#visitor-count',
-        path: 'TOTAL',
-        no_branding: true
-      });
-    } else if (tries > 100) {
-      clearInterval(timer);
-    }
-  }, 100);
-})();
+document.addEventListener('DOMContentLoaded', function () {
+  const target = document.getElementById('visitor-count');
+  if (!target) return;
+
+  fetch('https://aeroclubdiamante.goatcounter.com/counter/TOTAL.json', {
+    method: 'GET',
+    cache: 'no-store'
+  })
+    .then(function (response) {
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.text();
+    })
+    .then(function (text) {
+      let count = text.trim();
+
+      try {
+        const data = JSON.parse(text);
+        if (typeof data === 'number' || typeof data === 'string') {
+          count = data;
+        } else if (data && data.count !== undefined) {
+          count = data.count;
+        }
+      } catch (e) {
+        // If GoatCounter returns plain text, use it directly.
+      }
+
+      target.textContent = count || '0';
+    })
+    .catch(function () {
+      target.textContent = '—';
+    });
+});
 </script>
 
 </body></html>
