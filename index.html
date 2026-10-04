@@ -951,6 +951,79 @@ footer{padding:34px 0;background:#060b12;color:#8ea0b3;font-size:14px} .footer-r
   .visitors-wrap{grid-template-columns:1fr}
 }
 
+
+/* ===== AEROMODELISMO ===== */
+.aeromodel-section{
+  background:#fff;
+}
+.aeromodel-card{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:30px;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:30px;
+  background:linear-gradient(135deg,#f8fbfd,#eef4f7);
+}
+.aeromodel-mark{
+  min-height:260px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  background:var(--night);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.aeromodel-mark:before{
+  content:"";
+  position:absolute;
+  width:230px;height:230px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:50%;
+}
+.aeromodel-mark:after{
+  content:"";
+  position:absolute;
+  width:140px;height:140px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+}
+.aeromodel-icon{
+  position:relative;
+  z-index:2;
+  width:105px;
+  height:105px;
+}
+.aeromodel-copy h2{
+  margin:0 0 14px;
+  font-size:clamp(34px,4vw,50px);
+  line-height:1.05;
+}
+.aeromodel-copy p{
+  color:var(--muted);
+  font-size:17px;
+}
+.aeromodel-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:20px;
+}
+.aeromodel-tags span{
+  padding:8px 11px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:12px;
+  font-weight:800;
+}
+@media(max-width:850px){
+  .aeromodel-card{grid-template-columns:1fr}
+  .aeromodel-mark{min-height:220px}
+}
+
 </style></head>
 <body>
 <header class="site-header">
@@ -967,6 +1040,7 @@ footer{padding:34px 0;background:#060b12;color:#8ea0b3;font-size:14px} .footer-r
       <a href="#historia">Historia</a>
       <a href="#escuela">Escuela</a>
       <a href="#vuelo">Vuelo a Vela</a>
+      <a href="#aeromodelismo">Aeromodelismo</a>
       <a href="#flota">Flota</a>
       <a href="#pilotos">Pilotos</a>
       <a href="#contacto">Contacto</a>
@@ -1117,6 +1191,35 @@ footer{padding:34px 0;background:#060b12;color:#8ea0b3;font-size:14px} .footer-r
 </section>
 
 
+
+<!-- AEROMODELISMO -->
+<section id="aeromodelismo" class="aeromodel-section">
+  <div class="container">
+    <div class="aeromodel-card">
+      <div class="aeromodel-mark" aria-hidden="true">
+        <svg class="aeromodel-icon" viewBox="0 0 120 120" fill="none">
+          <path d="M15 63 51 51l13-28 9 2-4 28 32 10c5 2 5 9 0 11L69 84l4 28-9 2-13-28-36-12c-7-2-7-9 0-11Z" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <div class="aeromodel-copy">
+        <div class="kicker" style="color:var(--sky2)">Otra forma de vivir la aviación</div>
+        <h2>Aeromodelismo</h2>
+        <p>El aeromodelismo también forma parte de la vida del Aeroclub Diamante. Reúne técnica, construcción, pilotaje y pasión por la aviación en una actividad que acerca a personas de todas las edades al mundo aeronáutico.</p>
+        <p>La presencia de aeromodelistas amplía la comunidad del Aeroclub y suma otra disciplina vinculada al aprendizaje, la precisión y el vuelo.</p>
+
+        <div class="aeromodel-tags">
+          <span>Aeromodelismo</span>
+          <span>Técnica</span>
+          <span>Comunidad</span>
+          <span>Pasión por volar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- EQUIPO DE VUELO -->
 <section id="equipo" class="team-section">
   <div class="container">
@@ -1209,7 +1312,7 @@ footer{padding:34px 0;background:#060b12;color:#8ea0b3;font-size:14px} .footer-r
 
     <div class="pilot-grid">
       <div class="pilot-data"><span>Indicador</span><strong>DTE</strong></div>
-      <div class="pilot-data"><span>Tipo</span><strong>Aeródromo público</strong></div>
+      <div class="pilot-data"><span>Tipo</span><strong>Aeródromo privado</strong></div>
       <div class="pilot-data"><span>Servicio ATS</span><strong>No controlado</strong></div>
       <div class="pilot-data"><span>Elevación</span><strong>75 m · 246 ft</strong></div>
       <div class="pilot-data"><span>Posición respecto de Diamante</span><strong>4,5 km NNE</strong></div>
