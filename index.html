@@ -817,6 +817,140 @@ footer{padding:34px 0;background:#060b12;color:#8ea0b3;font-size:14px} .footer-r
 #visitor-count #gcvc-views{font:inherit!important;color:inherit!important;font-weight:800!important}
 @media(max-width:760px){.meteo-grid{grid-template-columns:1fr}}
 
+
+/* ===== NUESTRO EQUIPO DE VUELO ===== */
+.team-section{background:#fff}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:28px;
+}
+.team-card{
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(15,34,50,.05);
+}
+.team-avatar{
+  width:56px;height:56px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--night);
+  color:#fff;
+  font-weight:900;
+  font-size:18px;
+  margin-bottom:18px;
+}
+.team-card h3{
+  margin:0 0 10px;
+  font-size:22px;
+}
+.team-role{
+  display:inline-flex;
+  margin:4px 6px 0 0;
+  padding:7px 10px;
+  border-radius:999px;
+  background:#f3f7fa;
+  border:1px solid var(--line);
+  color:var(--ink);
+  font-size:12px;
+  font-weight:800;
+}
+.team-note{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:13px;
+}
+@media(max-width:850px){
+  .team-grid{grid-template-columns:1fr}
+}
+
+
+/* ===== REGISTRO DE VISITANTES ===== */
+.visitors-section{
+  background:linear-gradient(180deg,#f7fafc,#eef4f7);
+}
+.visitors-wrap{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:28px;
+  align-items:center;
+}
+.visitors-copy h2{
+  margin:0 0 14px;
+  font-size:clamp(36px,4vw,52px);
+  line-height:1.05;
+}
+.visitors-copy p{
+  color:var(--muted);
+  font-size:17px;
+  max-width:720px;
+}
+.visitors-points{
+  display:grid;
+  gap:10px;
+  margin:20px 0 24px;
+}
+.visitors-point{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:13px 15px;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid var(--line);
+}
+.visitors-point b{
+  min-width:24px;
+  color:var(--sky2);
+}
+.visitors-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:13px 18px;
+  border-radius:999px;
+  background:var(--night);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+}
+.visitors-qr-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 14px 40px rgba(15,34,50,.07);
+}
+.visitors-qr-card img{
+  width:min(240px,80%);
+  height:auto;
+  border-radius:12px;
+  display:block;
+  margin:0 auto 14px;
+}
+.visitors-qr-card strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:5px;
+}
+.visitors-qr-card span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+}
+.visitors-note{
+  margin-top:16px;
+  font-size:12px;
+  color:var(--muted);
+}
+@media(max-width:850px){
+  .visitors-wrap{grid-template-columns:1fr}
+}
+
 </style></head>
 <body>
 <header class="site-header">
@@ -981,6 +1115,46 @@ footer{padding:34px 0;background:#060b12;color:#8ea0b3;font-size:14px} .footer-r
     </div>
   </div>
 </section>
+
+
+<!-- EQUIPO DE VUELO -->
+<section id="equipo" class="team-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker" style="color:var(--sky2)">Nuestro equipo de vuelo</div>
+        <h2>Personas que hacen volar al Aeroclub.</h2>
+      </div>
+      <p>Equipo actual de pilotos, remolcadores e instructores vinculados a la actividad de vuelo y vuelo a vela.</p>
+    </div>
+
+    <div class="team-grid">
+      <article class="team-card">
+        <div class="team-avatar">WF</div>
+        <h3>Walter Franzoti</h3>
+        <span class="team-role">Piloto</span>
+        <span class="team-role">Piloto Remolcador</span>
+      </article>
+
+      <article class="team-card">
+        <div class="team-avatar">PA</div>
+        <h3>Pablo Antunes</h3>
+        <span class="team-role">Piloto</span>
+        <span class="team-role">Piloto Remolcador</span>
+      </article>
+
+      <article class="team-card">
+        <div class="team-avatar">CP</div>
+        <h3>César Pérez</h3>
+        <span class="team-role">Piloto de Planeador</span>
+        <span class="team-role">Instructor de Vuelo a Vela</span>
+      </article>
+    </div>
+
+    <div class="team-note">Listado inicial. Se incorporarán nuevos integrantes y funciones a medida que sean confirmados por el Aeroclub.</div>
+  </div>
+</section>
+
 
 <!-- FLOTA -->
 <section id="flota">
@@ -1180,6 +1354,39 @@ footer{padding:34px 0;background:#060b12;color:#8ea0b3;font-size:14px} .footer-r
     </div>
   </div>
 </section>
+
+
+<!-- REGISTRO DE VISITANTES -->
+<section id="visitantes" class="visitors-section">
+  <div class="container visitors-wrap">
+    <div class="visitors-copy">
+      <div class="kicker" style="color:var(--sky2)">Visitantes</div>
+      <h2>¿Venís de otro aeroclub?</h2>
+      <p>Nos gusta saber quiénes nos visitan y de dónde vienen. Si llegaste al Aeroclub Diamante como piloto, acompañante o visitante, podés registrar tu paso de forma simple.</p>
+
+      <div class="visitors-points">
+        <div class="visitors-point"><b>01</b><div><strong>Registro simple</strong><br><span>Nombre, procedencia, tipo de visita y datos de la aeronave si corresponde.</span></div></div>
+        <div class="visitors-point"><b>02</b><div><strong>Contacto opcional</strong><br><span>El teléfono o correo queda para uso interno del Aeroclub y no se publica.</span></div></div>
+        <div class="visitors-point"><b>03</b><div><strong>Publicación con autorización</strong><br><span>Solo mencionamos públicamente una visita cuando el visitante lo autoriza en el formulario.</span></div></div>
+      </div>
+
+      <a class="visitors-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeOPDW-uwySTjriQGm7Y9W1BmR_bAlugiR2AMBhhCrArsnWnA/viewform?usp=publish-editor" target="_blank" rel="noopener">
+        Registrar visita →
+      </a>
+
+      <div class="visitors-note">El registro está gestionado mediante Google Forms y queda asociado a la planilla interna del Aeroclub Diamante.</div>
+    </div>
+
+
+      <div class="visitors-qr-card">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAGIAQAAAABzOEqLAAADVUlEQVR4nO2czW7kMAyDPy7y/q/MPYiyM6fFHhJ4PG6BNsmEaBTB+iHlyvzn15//BRzEQXwtAnscGIPrmnFOcD7JXWvasQviIm9dgGWEhSyDkQWAPO9a046tEJKgXALIQgjqalwy7lrYjg0Q1+3YAhnJiFoUUKFKM+2vaccuiOvjzEKdKkS8ok/EmnbsgrggqaHDVS0Og3pRfP5a045dELf66h/fffuaduyCuCWGqqo01wdgWfh+06J2bIQQCKnilSxsIwlj1QJKwfXmU/00wmDZyd/KpWoKpYppXQWvbMf3I64kcFcLWKEqRxW/ALXH3nqq30VcoMGTpPfrolcgO3WWnAJ4TTt2QWh0G6FKKK/4RqBAnfu1p/pdhMaLHllDg6tye8ntN3lROzZCGCSpkjeS4xTAzSfeKJRl7dgGURS76qd7oQhQsyW9Ul58ql9GuDI3UnlGKFlednr4FFpL27EFQhKWpSQJYdd6SYcI3aP79B/PI3xLGEx+t5bMXBktiCxrxy6I6rvtcCXC0vQPlFzods+ydmyBmDJ5yeZ3LjcHbg7Y9uF3H0ZcVTtVklCzInXe0aqoLE5//g5Co3S6K7NKIBNSx6+jn7+BcHTyTtpFVeXcHcHcrlrWji0Q9/yR4zltNaXD8fvkj5cQtmfc0meO1121XdyOL0dckCEfJsPbkz5Krveg20+9+waiZNniqCaxTtT0cpaafF/Yjg0QF3HH6P+GXpsh0eoFseTDl7yBcDcYg2TvmkvODJZy6fDtTyPCXg0fjAY9Ra57xL2b9VNfvYCI/uchoNdJhMHuzct1K9vx/YjWYYEWobLPwLe2cCi6J149jNB8050qNDaCVKk11fOjn7+EcATZ3okT8ak6j2bkM8K4sh3fj5hDcHO+PTO8CVs1F9e9yVkfjyN6oCSl1Ri+alK33FFjcSd/PIy4CHnr+CXJxHPIx7f1c9bHw4hrxqmIUvPNu+gstS5y6qvnEbf9tVHJO5sD991qQwJZ045dEK12pBMfnfn8yPd7ffrz1xCjycjm866v/DESt74duyB8awB7oxpW7ZTK4Pvhd99AOHRuuCpL2Q7lNCDNAPvk84cRH/tr3bPVUdG7Es5/MLE5+eNhxMfW2Yf+xkEcxLci/gL64giecLEqhAAAAABJRU5ErkJggg==" alt="Código QR para registrar una visita al Aeroclub Diamante">
+        <strong>Escaneá y registrá tu visita</strong>
+        <span>El mismo formulario puede abrirse desde el botón de la web.</span>
+      </div>
+
+  </div>
+</section>
+
 
 
 <section style="padding-top:0">
