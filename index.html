@@ -1424,7 +1424,65 @@ body.gallery-lock{overflow:hidden}
  .nav-submenu a{color:#c8d5df!important;padding:8px 11px!important;white-space:normal}.login-btn{margin-top:5px;text-align:center}
 }
 @media(max-width:720px){.ac-destacados{grid-template-columns:1fr}.ac-destacado{padding:20px}.ac-piloto-enlaces{justify-content:flex-start}}
-</style></head>
+</style><style id="ac-correccion-menu-2026">
+/* Aeroclub Diamante - Corrección de submenús claros en todas las páginas */
+#mainNav .nav-submenu {
+  background: #ffffff !important;
+  border: 1px solid #dce4ec !important;
+  box-shadow: 0 16px 38px rgba(16, 37, 59, .18) !important;
+  z-index: 160;
+}
+#mainNav .nav-submenu a {
+  color: #24394e !important;
+  background: transparent;
+  font-weight: 600;
+}
+#mainNav .nav-submenu a:hover,
+#mainNav .nav-submenu a:focus-visible {
+  color: #125c96 !important;
+  background: #eaf3fc !important;
+  outline-offset: 2px;
+}
+#mainNav .nav-item:hover > .nav-submenu,
+#mainNav .nav-item:focus-within > .nav-submenu {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 1400px) {
+  #mainNav.links.mobile-open {
+    background: #ffffff !important;
+    color: #24394e !important;
+    border: 1px solid #dce4ec !important;
+  }
+  #mainNav.links.mobile-open > a:not(.login-btn):not(.ac-nav-private),
+  #mainNav.links.mobile-open .nav-parent {
+    color: #24394e !important;
+  }
+  #mainNav.links.mobile-open .nav-submenu {
+    position: static !important;
+    min-width: 0;
+    background: #ffffff !important;
+    border: 0 !important;
+    border-left: 2px solid #dce7f4 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 2px 0 8px 12px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  #mainNav.links.mobile-open .nav-submenu a {
+    color: #24394e !important;
+    white-space: normal !important;
+  }
+  #mainNav.links.mobile-open > a:not(.login-btn):not(.ac-nav-private):hover,
+  #mainNav.links.mobile-open .nav-parent:hover {
+    color: #125c96 !important;
+    background: #eaf3fc;
+  }
+}
+</style>
+</head>
 <body>
 <header class="site-header">
 <div class="container nav">
@@ -1801,16 +1859,6 @@ body.gallery-lock{overflow:hidden}
 <div class="kicker" style="color:var(--sky2)">Encontranos</div>
 <h2>Aeroclub<br/>Diamante</h2>
 <p>Ruta Provincial 11, km 33,5 · Diamante · Entre Ríos · Argentina.</p>
-<div class="email-box">
-<span class="role">Correo electrónico</span>
-<a class="icon-link" href="mailto:contacto@aeroclubdiamante.com.ar">
-<svg aria-hidden="true" fill="none" viewbox="0 0 24 24">
-<path d="M3 6.75C3 5.78 3.78 5 4.75 5h14.5C20.22 5 21 5.78 21 6.75v10.5c0 .97-.78 1.75-1.75 1.75H4.75A1.75 1.75 0 0 1 3 17.25V6.75Z" stroke="currentColor" stroke-width="1.8"></path>
-<path d="M4 7l8 5 8-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
-</svg>
-            contacto@aeroclubdiamante.com.ar
-          </a>
-</div>
 <div class="contact-actions">
 <a class="primary icon-link" href="https://www.google.com/maps/search/?api=1&amp;query=Aeroclub+Diamante+Ruta+Provincial+11+km+33.5+Diamante+Entre+Rios+Argentina" rel="noopener" target="_blank">
 <svg aria-hidden="true" fill="currentColor" viewbox="0 0 24 24">
@@ -1869,7 +1917,6 @@ body.gallery-lock{overflow:hidden}
 <div class="form-actions">
 <button class="send-email" onclick="sendEmailContact()" type="button">Enviar consulta</button>
 </div>
-<div class="form-note">También podés escribir directamente a contacto@aeroclubdiamante.com.ar.</div>
 </div>
 <p class="source-note">
           Para información aeronáutica operacional, consulte siempre documentación ANAC/AIS vigente.
