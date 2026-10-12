@@ -6,7 +6,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="#08111d" name="theme-color"/>
 <title>Aeroclub Diamante | Escuela de Vuelo y Vuelo a Vela</title>
-<meta content="Aeroclub Diamante, Entre Ríos. Escuela de Vuelo, vuelos de bautismo en avión y planeador, vuelo a vela, flota y Centro de Estudio." name="description"/>
+<meta content="Aeroclub Diamante, Entre Ríos. Escuela de Vuelo, vuelos de bautismo en avión y planeador, vuelo a vela, flota." name="description"/>
 <link href="https://aeroclubdiamante.com.ar/" rel="canonical"/>
 <style>
 :root{--ink:#111827;--muted:#5f6b7a;--paper:#fff;--soft:#f4f7fa;--line:#dce4ec;--sky:#2e83b8;--sky2:#0f5f93;--night:#08111d}
@@ -1601,6 +1601,12 @@ body #ac-home-eventos .ac-home-evento-flyer {width:116px;max-width:34%;max-heigh
   #aeromodelismo .aeromodel-mark {min-height:220px}
 }
 </style>
+<style id="ac-autenticacion-index-359">
+.site-header .ac-sesion-estado{font-size:11px;color:#244969;font-weight:700;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.site-header #ac-sesion-salir{font-family:inherit;cursor:pointer;background:#f5f8fb!important;color:#114a76!important}
+.site-header #ac-sesion-salir[hidden],.site-header #ac-sesion-ingreso[hidden]{display:none!important}
+@media(max-width:740px){.site-header .ac-sesion-estado{font-size:10px;max-width:104px}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -1611,7 +1617,9 @@ body #ac-home-eventos .ac-home-evento-flyer {width:116px;max-width:34%;max-heigh
     </a>
     <div class="ac-public-actions">
       <button type="button" class="menu-btn ac-public-menu-button" id="mobileMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav"><span aria-hidden="true">☰</span><span class="ac-menu-button-label">Menú</span></button>
-      <a class="ac-public-login" href="https://aeroclub-diamante-sistema.sebastianbigot.workers.dev/login" target="_blank" rel="noopener noreferrer" aria-label="Ingresar al Sistema Integral de Gestión">Sistema Integral <span aria-hidden="true">↗</span></a>
+      <span id="ac-sesion-estado" role="status" aria-live="polite" class="ac-sesion-estado">Verificando sesión...</span>
+      <a id="ac-sesion-ingreso" class="ac-public-login" href="https://sistema.aeroclubdiamante.com.ar/login" aria-label="Ingresar al Sistema Integral">Ingresar</a>
+      <button id="ac-sesion-salir" class="ac-public-login" type="button" hidden>Cerrar sesión</button>
     </div>
     <nav id="mainNav" class="links ac-public-menu" aria-label="Navegación principal">
       <div class="ac-public-group">
@@ -1633,7 +1641,6 @@ body #ac-home-eventos .ac-home-evento-flyer {width:116px;max-width:34%;max-heigh
         <span class="ac-public-group-title">Más información</span>
         <a href="eventos.html">Eventos y Jornadas</a>
         <a href="galeria.html">Galería de fotos</a>
-        <a href="https://aeroclub-centro-estudio.sebastianbigot.workers.dev/" target="_blank" rel="noopener noreferrer">Centro de Estudio <span aria-hidden="true">↗</span></a>
       </div>
     </nav>
   </div>
@@ -2049,7 +2056,7 @@ body #ac-home-eventos .ac-home-evento-flyer {width:116px;max-width:34%;max-heigh
 <option>Escuela de Vuelo</option>
 <option>Vuelo a Vela</option>
 <option>Vuelos de Bautismo</option>
-<option>Centro de Estudio</option>
+
 <option>Actividades del Aeroclub</option>
 <option>Administración / Tesorería</option>
 </select>
@@ -2253,4 +2260,45 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('click',e=>{if(!e.target.closest('.ac-public-nav'))setOpen(false);});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){setOpen(false);button.focus();}});
 })();
-</script></body></html>
+</script><script id="ac-integral-sesion-359">
+(()=>{'use strict';
+const SISTEMA='https://sistema.aeroclubdiamante.com.ar';
+const estado=document.getElementById('ac-sesion-estado');
+const ingresar=document.getElementById('ac-sesion-ingreso');
+const salir=document.getElementById('ac-sesion-salir');
+if(!estado||!ingresar||!salir)return;
+async function actualizar(){
+ estado.textContent='Verificando sesión...';
+ try{
+  const r=await fetch(SISTEMA+'/api/estudio/estado',{method:'GET',mode:'cors',credentials:'include',cache:'no-store'});
+  if(!r.ok)throw Error('consulta');
+  const j=await r.json();
+  if(j.autenticado){
+   estado.textContent='Sesión iniciada: '+String(j.nombre||j.usuario||'Usuario').slice(0,35);
+   ingresar.textContent='Mi panel';ingresar.href=SISTEMA+'/panel.html';ingresar.hidden=false;
+   salir.hidden=false;
+  }else{
+   estado.textContent='No inició sesión';
+   ingresar.textContent='Ingresar';ingresar.href=SISTEMA+'/login';ingresar.hidden=false;
+   salir.hidden=true;
+  }
+ }catch(_){
+  estado.textContent='Sesión no verificada';
+  ingresar.textContent='Ingresar';ingresar.href=SISTEMA+'/login';ingresar.hidden=false;salir.hidden=true;
+  // Nunca afirmar una sesión que el navegador no pudo confirmar.
+ }
+}
+salir.addEventListener('click',async()=>{
+ salir.disabled=true;
+ try{
+  const r=await fetch(SISTEMA+'/api/logout',{method:'POST',mode:'cors',credentials:'include',cache:'no-store'});
+  if(!r.ok)throw Error('logout');
+  await actualizar();
+ }catch(_){estado.textContent='No se pudo cerrar sesión; reintentá.';}
+ finally{salir.disabled=false;}
+});
+window.addEventListener('focus',()=>{void actualizar();});
+void actualizar();
+})();
+</script>
+</body></html>
