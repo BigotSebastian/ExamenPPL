@@ -2188,6 +2188,11 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 </style>
 <script id="ac-home-event-flyers-355">
+function fechaAR359(valor) {
+  const texto = String(valor ?? '').trim();
+  const partes = /^(\d{4})-(\d{2})-(\d{2})(.*)$/.exec(texto);
+  return partes ? `${partes[3]}/${partes[2]}/${partes[1]}${partes[4]}` : texto;
+}
 (async function () {
   const destino = document.getElementById('ac-home-eventos');
   if (!destino) return;
@@ -2231,7 +2236,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const titulo = document.createElement('b');
       titulo.textContent = String(evento.titulo || 'Evento');
       const detalle = document.createElement('small');
-      detalle.textContent = [evento.fecha, evento.hora, evento.lugar].filter(Boolean).join(' · ');
+      detalle.textContent = [fechaAR359(evento.fecha), evento.hora, evento.lugar].filter(Boolean).join(' · ');
       texto.append(titulo, detalle);
       fila.append(texto);
       elemento.append(fila);
