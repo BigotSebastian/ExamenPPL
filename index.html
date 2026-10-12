@@ -2110,7 +2110,104 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<script>(async function(){const u=document.getElementById('ac-home-eventos');if(!u)return;try{const r=await fetch('https://aeroclub-diamante-sistema.sebastianbigot.workers.dev/api/eventos-publicos',{cache:'no-store',mode:'cors'});if(!r.ok)throw new Error('HTTP '+r.status);const j=await r.json();const eventos=Array.isArray(j.eventos)?j.eventos.slice(0,3):[];u.replaceChildren();if(!eventos.length){const li=document.createElement('li');li.textContent='No hay próximos eventos publicados.';u.append(li);return;}for(const ev of eventos){const li=document.createElement('li');const b=document.createElement('b');b.textContent=String(ev.titulo||'Evento');const sm=document.createElement('small');sm.textContent=[ev.fecha,ev.hora,ev.lugar].filter(Boolean).join(' · ');li.append(b,sm);u.append(li)}}catch(e){u.replaceChildren();const li=document.createElement('li');li.textContent='Agenda no disponible por el momento.';u.append(li);}})();</script><script id="ac-public-menu-controller-2026">
+<style id="ac-agenda-desplazable-style-357">
+/* Solo la lista de Agenda Institucional; no cambia hero, grilla ni otras tarjetas. */
+#ac-home-eventos {
+  display:block;
+  box-sizing:border-box;
+  height:190px;
+  min-height:190px;
+  max-height:190px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#a8d5f7 rgba(5,22,43,.35);
+  scrollbar-gutter:stable;
+  margin:0 0 14px;
+  padding:0 8px 0 0;
+}
+#ac-home-eventos::-webkit-scrollbar { width:9px; }
+#ac-home-eventos::-webkit-scrollbar-track { background:rgba(5,22,43,.30);border-radius:10px; }
+#ac-home-eventos::-webkit-scrollbar-thumb { background:#a8d5f7;border:2px solid rgba(5,22,43,.3);border-radius:10px; }
+#ac-home-eventos > li {list-style:none;margin:0;padding:10px 0 13px;border-bottom:1px solid rgba(255,255,255,.24);}
+#ac-home-eventos > li:last-child {border-bottom:none;}
+#ac-home-eventos .ac-home-evento-contenido {display:flex;align-items:flex-start;gap:12px;min-width:0;}
+#ac-home-eventos .ac-home-evento-flyer {
+  display:block;width:112px;max-width:40%;height:auto;max-height:152px;object-fit:contain;flex:0 0 auto;
+  border-radius:10px;border:1px solid rgba(255,255,255,.25);background:white;
+  box-shadow:0 6px 14px rgba(0,0,0,.16);
+}
+#ac-home-eventos .ac-home-evento-datos {min-width:0;flex:1;overflow-wrap:anywhere;}
+#ac-home-eventos .ac-home-evento-datos b {display:block;font-size:14px;line-height:1.35;}
+#ac-home-eventos .ac-home-evento-datos small {display:block;line-height:1.5;margin-top:5px;}
+@media (max-width:550px) {
+  #ac-home-eventos {height:180px;min-height:180px;max-height:180px;}
+  #ac-home-eventos .ac-home-evento-contenido {gap:9px;}
+  #ac-home-eventos .ac-home-evento-flyer {width:82px;max-width:36%;max-height:120px;}
+  #ac-home-eventos .ac-home-evento-datos b {font-size:13px;}
+}
+</style>
+<script id="ac-agenda-desplazable-357">
+(async function () {
+  'use strict';
+  const destino = document.getElementById('ac-home-eventos');
+  if (!destino) return;
+  destino.setAttribute('tabindex', '0');
+  destino.setAttribute('aria-label', 'Eventos publicados; desplazate verticalmente para ver todos');
+  const origen = 'https://aeroclub-diamante-sistema.sebastianbigot.workers.dev';
+  try {
+    const respuesta = await fetch(origen + '/api/eventos-publicos', {cache:'no-store', mode:'cors'});
+    if (!respuesta.ok) throw new Error('No se pudo consultar la agenda');
+    const datos = await respuesta.json();
+    // La API devuelve los proximos eventos aprobados, ordenados por fecha (hasta 150).
+    // No limitar artificialmente a tres elementos en la portada.
+    const eventos = Array.isArray(datos.eventos) ? datos.eventos : [];
+    destino.replaceChildren();
+    if (!eventos.length) {
+      const aviso = document.createElement('li');
+      aviso.textContent = 'No hay próximos eventos publicados.';
+      destino.append(aviso);
+      return;
+    }
+    for (const ev of eventos) {
+      const li = document.createElement('li');
+      const fila = document.createElement('div');
+      fila.className = 'ac-home-evento-contenido';
+      if (ev.imagen) {
+        try {
+          const imagenUrl = new URL(String(ev.imagen), origen);
+          if (imagenUrl.origin === origen && imagenUrl.protocol === 'https:') {
+            const img = document.createElement('img');
+            img.className = 'ac-home-evento-flyer';
+            img.src = imagenUrl.href;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.alt = 'Flyer de ' + String(ev.titulo || 'evento');
+            img.addEventListener('error', () => img.remove(), {once:true});
+            fila.append(img);
+          }
+        } catch (_) { /* Imagen invalida: dejar visible el evento */ }
+      }
+      const datos = document.createElement('div');
+      datos.className = 'ac-home-evento-datos';
+      const titulo = document.createElement('b');
+      titulo.textContent = String(ev.titulo || 'Evento');
+      const meta = document.createElement('small');
+      meta.textContent = [ev.fecha, ev.hora, ev.lugar].filter(Boolean).join(' · ');
+      datos.append(titulo,meta);
+      fila.append(datos);
+      li.append(fila);
+      destino.append(li);
+    }
+  } catch (_) {
+    destino.replaceChildren();
+    const aviso = document.createElement('li');
+    aviso.textContent = 'La agenda no está disponible. Intentá más tarde.';
+    destino.append(aviso);
+  }
+})();
+</script><script id="ac-public-menu-controller-2026">
 (()=>{
   const button=document.getElementById('mobileMenuBtn');
   const menu=document.getElementById('mainNav');
