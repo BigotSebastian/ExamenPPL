@@ -1412,7 +1412,11 @@ body.gallery-lock{overflow:hidden}
 .ac-piloto-enlaces{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin:8px 0 18px}
 .ac-piloto-enlaces a{display:inline-flex;align-items:center;gap:7px;padding:9px 11px;min-width:104px;justify-content:center;border:1px solid rgba(93,154,194,.25);background:#fff;border-radius:12px;color:#0a4878;text-decoration:none;font-weight:700;font-size:.85rem;box-shadow:0 4px 14px #113b5710}
 .ac-piloto-enlaces svg{width:23px;height:23px;flex:0 0 auto}
-.ac-aero-responsable{margin:15px 0;color:var(--muted,#607188);font-size:.9rem}
+.ac-aero-contactos{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 4px}
+.ac-aero-contacto{display:inline-flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;min-width:190px;padding:12px 19px;border-radius:12px;background:linear-gradient(110deg,#103760,#2671a9);color:#fff!important;text-decoration:none!important;box-shadow:0 5px 15px rgba(16,55,96,.15);}
+
+.ac-aero-contacto-nombre{font-weight:800;font-size:1rem;color:#fff}.ac-aero-contacto-tel{font-size:.9rem;color:#fff;opacity:.94}
+@media(max-width:520px){.ac-aero-contactos{flex-direction:column}.ac-aero-contacto{width:100%;box-sizing:border-box}}
 .ac-aero-more{display:inline-flex;padding:10px 17px;border-radius:10px;background:linear-gradient(110deg,#103760,#2671a9);color:#fff!important;text-decoration:none;font-weight:700}
 .ac-favav{display:flex;justify-content:center;margin:12px auto 0}.ac-favav a{display:inline-block;border:1px solid #d9e6ee;border-radius:9px;padding:7px 14px;font-weight:800;font-size:.9rem;letter-spacing:.07em;text-decoration:none;color:#1a5b8c;background:#ffffffee}
 .ac-nav-private{font-weight:700}.ac-nav-private::before{content:'🔒 ';font-size:.85em}
@@ -1799,7 +1803,10 @@ body #ac-home-eventos .ac-home-evento-flyer {width:116px;max-width:34%;max-heigh
 
 
 
-<p class="ac-aero-responsable">Presidencia de Aeromodelismo: información institucional a confirmar.</p><a class="ac-aero-more" href="index.html#contacto">Más información</a></div>
+<div class="ac-aero-contactos" aria-label="Contactos de Aeromodelismo">
+<div class="ac-aero-contacto"><span class="ac-aero-contacto-nombre">Silvio Pezzali</span><span class="ac-aero-contacto-tel">343 446 9684</span></div>
+<div class="ac-aero-contacto"><span class="ac-aero-contacto-nombre">Lucas Rivero</span><span class="ac-aero-contacto-tel">343 447 7124</span></div>
+</div></div>
 </div>
 </div>
 </section>
@@ -1998,7 +2005,6 @@ body #ac-home-eventos .ac-home-evento-flyer {width:116px;max-width:34%;max-heigh
 <article class="contact-person">
 <span class="role">Tesorero</span>
 <strong>Eduardo Araneda</strong>
-<a href="tel:+5493435026300">343 502 6300</a>
 </article>
 <article class="contact-person">
 <span class="role">Comunicación Institucional</span>
